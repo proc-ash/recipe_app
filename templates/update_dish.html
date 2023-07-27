@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% if user.is_authenticated %}
+        <title>Welcome {{ fname }}</title>
+    {% endif %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme = 'dark'>
+        <div class="container-fluid">
+          <a class="navbar-brand" href="/dishes/">Cooking Wonders</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About Us</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
+              </li>
+            </ul>
+            <form class="d-flex" role="search">
+                <a href="/"><button class="btn btn-outline-success me-2" type="button">logout</button></a>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <!-- {% if user.is_authenticated %}
+        <h3>Hello {{fname}}, welcome to Cooking Wonders</h3>
+        <h5>what are you waiting for let's add some delicious recipies </h5>
+    {%endif%} -->
+      <div class="container mt-5">
+        <form class="col-6 mx-auto card p-3 shadow-lg". method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <h3>Update Dish</h3>
+          <hr>
+          <!-- {% if messages %}
+          <div class="alert alert-primary" role="alert">
+              {% for message in messages %}
+                  {{ message}}
+              {% endfor %}
+            </div>
+          {% endif %} -->
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Dish Name:</label>
+            <input type="text" value="{{dishes.dish_name}}" name="dish_name" class="form-control" required>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1" class="form-label">Dish Recipe</label>
+            <textarea name="dish_description" class="form-control" required>{{dishes.dish_description}}</textarea>
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Dish Image:</label>
+            <input type="file" name="dish_image" class="form-control">
+          </div>
+          <button type="submit" class="btn btn-success">Update dish</button>
+        </form>
+      </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+  </body>
+</html>
